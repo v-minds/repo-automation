@@ -25,4 +25,4 @@ jobs:
         run: |
           SCRIPT_PATH="Repo_creation_Scripts/3.4.repository_automation_logic_cron.sh"
           TEXT_FILE_PATH="Repository-Inputs.txt"  # Update with the correct file name
-          bash "$SCRIPT_PATH" "$TEXT_FILE_PATH"
+          bash "$SCRIPT_PATH" "/$TEXT_FILE_PATH"  # Add a leading slash for the root directory
