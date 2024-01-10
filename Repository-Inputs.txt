@@ -1,0 +1,11 @@
+New Repository Name: giapps-maven-dev7
+Anonymous Read-Only Access: Yes
+Repository POC: ccardoso, avardhineni, spinreddy,
+Type of Repository: Remote
+Package Type: maven
+Repository Location: EMEA
+URL: https://docker.io
+Inclusion Rules: kong/*, viasat*/
+Exclusion Rules: mrp-/*, cmob-/*, viasat*/
+Repositories: 3rd-party-helm-local, influxdata-remote
+Default Local Repo: emv5-maven-local
