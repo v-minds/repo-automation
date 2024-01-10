@@ -1,0 +1,28 @@
+name: Repository Automation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_artifactory:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install pyyaml
+
+      - name: Execute Repository Automation Script
+        run: |
+          SCRIPT_PATH="Repo_creation_Scripts/3.4.repository_automation_logic_cron.sh"
+          TEXT_FILE_PATH="Repository-Inputs.txt"  # Update with the correct file name
+          bash "$SCRIPT_PATH" "$TEXT_FILE_PATH"
