@@ -1,0 +1,21 @@
+repository_name: giapps-maven-dev5
+  anonymous_read_only_access: Yes
+  repository_poc:
+    - ccardoso
+    - avardhineni
+    - spinreddy
+  type: Remote
+  package_type: maven
+  repository_location: EMEA
+  url: https://docker.io
+  inclusion_rules:
+    - kong/*
+    - viasat*/
+  exclusion_rules:
+    - mrp-/*
+    - cmob-/*
+    - viasat*/
+  repositories:
+    - 3rd-party-helm-local
+    - influxdata-remote
+  default_local_repo: emv5-maven-local
