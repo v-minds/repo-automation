@@ -27,18 +27,35 @@ IFS=',' read -ra REPO_ARRAY <<< "$REPOSITORIES"
 # Create a JSON-friendly string for repositories
 # REPO_LIST=$(IFS=, ; echo "${REPO_ARRAY[*]}")
 
-# JSON payload for repository creation with the extracted information
-REPO_JSON='{
-  "key": "'"$REPO_NAME"'",
-  "rclass": "'"$RCLASS"'",
-  "url": "'"$URL"'",
-  "packageType": "'"$PACKAGE_TYPE"'",
-  "description": "'"$repository_poc"'",
-  "includesPattern": "'"$INCLUSION_RULES"'",
-  "excludesPattern": "'"$EXCLUSION_RULES"'",
-  "repositories": '"$(printf '%s\n' "${REPO_ARRAY[@]}" | jq -R -s -c 'split("\n")[:-1]')"',
-  "defaultDeploymentRepo": "'"$DEFAULT_LOCAL_REPO"'"
-}'
+# Check if the package type is terraform
+if [ "$PACKAGE_TYPE" = "terraform" ]; then
+    terraformType=$(grep "terraformType:" "$input_file" | cut -d ':' -f 2 | tr -d ' ')
+    REPO_JSON='{
+      "key": "'"$REPO_NAME"'",
+      "rclass": "'"$RCLASS"'",
+      "url": "'"$URL"'",
+      "packageType": "'"$PACKAGE_TYPE"'",
+      "terraformType": "'"$terraformType"'",
+      "description": "'"$repository_poc"'",
+      "includesPattern": "'"$INCLUSION_RULES"'",
+      "excludesPattern": "'"$EXCLUSION_RULES"'",
+      "repositories": '"$(printf '%s\n' "${REPO_ARRAY[@]}" | jq -R -s -c 'split("\n")[:-1]')"',
+      "defaultDeploymentRepo": "'"$DEFAULT_LOCAL_REPO"'"
+    }'
+else
+    # JSON payload for repository creation without terraformType
+    REPO_JSON='{
+      "key": "'"$REPO_NAME"'",
+      "rclass": "'"$RCLASS"'",
+      "url": "'"$URL"'",
+      "packageType": "'"$PACKAGE_TYPE"'",
+      "description": "'"$repository_poc"'",
+      "includesPattern": "'"$INCLUSION_RULES"'",
+      "excludesPattern": "'"$EXCLUSION_RULES"'",
+      "repositories": '"$(printf '%s\n' "${REPO_ARRAY[@]}" | jq -R -s -c 'split("\n")[:-1]')"',
+      "defaultDeploymentRepo": "'"$DEFAULT_LOCAL_REPO"'"
+    }'
+fi
 
 echo "JSON Payload: $REPO_JSON"
 # Function to create a local repository using the Artifactory REST API

@@ -15,6 +15,6 @@ jobs:
 
       - name: Execute Repository Automation Script
         run: |
-          SCRIPT_PATH="Repo_creation_Scripts/3.7.sh"
+          SCRIPT_PATH="Repo_creation_Scripts/3.4.sh"
           TEXT_FILE_PATH="inputs.txt"  # Update with the correct file name
           bash "$SCRIPT_PATH" "/$TEXT_FILE_PATH"  # Add a leading slash for the root directory
