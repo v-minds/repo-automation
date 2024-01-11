@@ -9,3 +9,4 @@ Inclusion Rules: kong/*, viasat*/
 Exclusion Rules: mrp-/*, cmob-/*, viasat*/
 Repositories: giapps-maven-local1, giapps-maven-dev5
 Default Local Repo: giapps-maven-local1
+terraformType: provider
