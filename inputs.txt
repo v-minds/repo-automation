@@ -1,7 +1,7 @@
-New Repository Name: giapps-maven-virtual2
+New Repository Name: giapps-helm-remote1
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: virtual
+Type of Repository: remote
 Package Type: maven
 Repository Location: EMEA
 URL: https://docker.io
