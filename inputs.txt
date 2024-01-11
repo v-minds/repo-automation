@@ -1,11 +1,11 @@
 New Repository Name: giapps-maven-local1
 Anonymous Read-Only Access: Yes
-Repository POC: ccardoso, avardhineni, spinreddy,
-Type of Repository: local
+Repository POC: ccardoso, avardhineni, spinreddy
+Type of Repository: virtual
 Package Type: maven
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/
 Exclusion Rules: mrp-/*, cmob-/*, viasat*/
-Repositories: 3rd-party-helm-local, influxdata-remote
-Default Local Repo: emv5-maven-local
+Repositories: giapps-maven-local1, giapps-maven-dev5
+Default Local Repo: giapps-maven-local1
