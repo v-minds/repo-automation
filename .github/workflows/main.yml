@@ -2,7 +2,8 @@ name: Repository Automation
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types:
+      - closed
 
 jobs:
   create_artifactory:
