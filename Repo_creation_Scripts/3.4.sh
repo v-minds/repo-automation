@@ -8,7 +8,7 @@ USERNAME="avardhineni4@gmail.com"
 API_KEY="AKCpBrvkRp4gkkQ3BtVzZPNh8pGnZfGEhn411GUeatAKHPRExdgPZVxgU2YRTsUsCLNzRBRso"
 
 # Set the path to the new input file
-input_file="/Repository-Inputs.txt"
+input_file="inputs.txt"
 
 # Read the repository inputs from the specified file
 REPO_NAME=$(grep -m 1 "New Repository Name:" "$input_file" | cut -d ':' -f 2 | tr -d ' ' | tr '[:upper:]' '[:lower:]' | tr '_' '-')
