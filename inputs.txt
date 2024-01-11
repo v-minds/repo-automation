@@ -1,8 +1,8 @@
 New Repository Name: giapps-helm-remote5
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: remote
-Package Type: maven
+Type of Repository: local
+Package Type: terraform
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/
