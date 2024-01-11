@@ -1,4 +1,4 @@
-New Repository Name: giapps-helm-remote5
+New Repository Name: giapps-terraform-local
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: local
