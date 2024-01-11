@@ -1,7 +1,7 @@
-New Repository Name: giapps-maven-dev7
+New Repository Name: giapps-maven-dev8
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy,
-Type of Repository: Remote
+Type of Repository: virtual
 Package Type: maven
 Repository Location: EMEA
 URL: https://docker.io
