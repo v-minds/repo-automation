@@ -1,4 +1,4 @@
-New Repository Name: giapps-helm-remote3
+New Repository Name: giapps-helm-remote5
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: remote
