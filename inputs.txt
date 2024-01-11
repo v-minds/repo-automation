@@ -1,4 +1,4 @@
-New Repository Name: giapps-maven-local1
+New Repository Name: giapps-maven-virtual1
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: virtual
