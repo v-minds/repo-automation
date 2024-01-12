@@ -1,8 +1,8 @@
-New Repository Name: giapps-helm-virtual4
-Anonymous Read-Only Access: yes
+New Repository Name: giapps-helm-virtual5
+Anonymous Read-Only Access: No
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: virtual
-Package Type: terraform
+Package Type: helm
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/
