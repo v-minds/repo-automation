@@ -93,7 +93,10 @@ create_repo() {
 create_repo  # Attempt to create the repository
 
 # Check if the file exists and Anonymous Read-Only Access is Yes
-if [ -f "$input_file" ] && grep -q "Anonymous Read-Only Access: Yes" "$input_file"; then
+# if [ -f "$input_file" ] && grep -q "Anonymous Read-Only Access: Yes" "$input_file"; then
+
+if [ -f "$input_file" ] && grep -q "Anonymous Read-Only Access: Yes" "$input_file" && ! grep -q "Type of Repository: virtual" "$input_file"; then
+
     # Retrieve permission target
     PERMISSION_TARGET=$(curl -u "$USERNAME:$API_KEY" -X GET "$ARTIFACTORY_URL/api/v2/security/permissions/anonymous-read-only-prod")
     echo "$PERMISSION_TARGET"
