@@ -1,4 +1,4 @@
-New Repository Name: giapps-helm-remote12
+New Repository Name: giapps-helm-remote133
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: remote
@@ -9,4 +9,4 @@ Inclusion Rules: kong/*, viasat*/*
 Exclusion Rules: mrp-/*, cmob-/*, viasat*/
 Repositories: giapps-maven-local1, giapps-maven-dev5
 Default Local Repo: giapps-maven-local1
-terraformType: module
+terraformType: provider
