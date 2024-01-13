@@ -1,7 +1,7 @@
-New Repository Name: giapps-helm-remote123
+New Repository Name: test-helm
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: remote
+Type of Repository: virtual
 Package Type: helm
 Repository Location: EMEA
 URL: https://docker.io
