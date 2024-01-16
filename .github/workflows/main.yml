@@ -15,7 +15,19 @@ jobs:
 
       - name: Execute Repository Automation Script
         run: |
-          SCRIPT_PATH="Repo_creation_Scripts/3.8.1.sh"
-          TEXT_FILE_PATH="inputs.txt"  # Update with the correct file name
-          bash "$SCRIPT_PATH" "/$TEXT_FILE_PATH"  # Add a leading slash for the root directory
+          INPUTS_FILE="inputs.txt"
+          PACKAGE_TYPE=$(grep -o "Package Type: [[:alnum:]]*" "$INPUTS_FILE" | cut -d ' ' -f 3)
+          REPO_TYPE=$(grep -m 1 "Type of Repository:" "$INPUTS_FILE" | cut -d ':' -f 2 | tr '[:upper:]' '[:lower:]' | tr -d ' ')
 
+          if [ "$PACKAGE_TYPE" = "helm" ] && [ "$REPO_TYPE" = "virtual" ]; then
+            SCRIPT_PATH="Repo_creation_Scripts/8.sh"
+          elif [ "$REPO_TYPE" = "virtual" ]; then
+            SCRIPT_PATH="Repo_creation_Scripts/8.1.sh"
+          elif [ "$REPO_TYPE" = "local" ] || [ "$REPO_TYPE" = "remote" ]; then
+            SCRIPT_PATH="Repo_creation_Scripts/3.8.1.sh"
+          else
+            echo "No matching condition found for execution."
+            exit 1
+          fi
+
+          bash "$SCRIPT_PATH" "/$INPUTS_FILE"  # Add a leading slash for the root directory
