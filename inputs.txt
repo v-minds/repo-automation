@@ -1,8 +1,8 @@
-New Repository Name: test3-helm-remote
+New Repository Name: test-debian
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: remote
-Package Type: helm
+Type of Repository: local
+Package Type: debian
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/*
