@@ -1,8 +1,8 @@
-New Repository Name: jfrog-docker-virtual
+New Repository Name: jfrog1-debian
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: virtual
-Package Type: docker
+Package Type: debian
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/*
