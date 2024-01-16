@@ -1,8 +1,8 @@
-New Repository Name: jfrog-terraform-local
+New Repository Name: jfrog-docker-local
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: local
-Package Type: terraform
+Package Type: docker
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/*
