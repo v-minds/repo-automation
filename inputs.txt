@@ -1,8 +1,8 @@
-New Repository Name: jfrog-debian-remote
+New Repository Name: jfrog-terraform-local
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: remote
-Package Type: debian
+Type of Repository: local
+Package Type: terraform
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/*
