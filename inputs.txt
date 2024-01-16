@@ -1,7 +1,7 @@
 New Repository Name: jfrog5-helm
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: virtual
+Type of Repository: local
 Package Type: helm
 Repository Location: EMEA
 URL: https://docker.io
