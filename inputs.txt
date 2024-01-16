@@ -1,4 +1,4 @@
-New Repository Name: test-debian
+New Repository Name: jfrog-debian
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: local
