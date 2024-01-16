@@ -1,7 +1,7 @@
-New Repository Name: jfrog-docker-local
+New Repository Name: jfrog-docker-remote
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: local
+Type of Repository: remote
 Package Type: docker
 Repository Location: EMEA
 URL: https://docker.io
