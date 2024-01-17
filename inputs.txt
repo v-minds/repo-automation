@@ -1,7 +1,7 @@
 New Repository Name: jfrog7-debian
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: remote
+Type of Repository: local
 Package Type: debian
 Repository Location: EMEA
 URL: https://docker.io
