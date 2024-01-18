@@ -1,8 +1,8 @@
-New Repository Name: jfrog7-debian
+New Repository Name: jfrog7-helm
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: local
-Package Type: debian
+Package Type: helm
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/*
