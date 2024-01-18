@@ -1,8 +1,8 @@
-New Repository Name: terraform-test2-remote
+New Repository Name: jfrog9-helm
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
-Type of Repository: remote
-Package Type: terraform
+Type of Repository: local
+Package Type: helm
 Repository Location: EMEA
 URL: https://docker.io
 Inclusion Rules: kong/*, viasat*/*
