@@ -19,7 +19,7 @@ jobs:
           PACKAGE_TYPE=$(grep -o "Package Type: [[:alnum:]]*" "$INPUTS_FILE" | cut -d ' ' -f 3)
           REPO_TYPE=$(grep -m 1 "Type of Repository:" "$INPUTS_FILE" | cut -d ':' -f 2 | tr '[:upper:]' '[:lower:]' | tr -d ' ')
 
-          if [ "$PACKAGE_TYPE" = "helm" ] && [ "$REPO_TYPE" = "virtual" ]; then
+          if [ "$PACKAGE_TYPE" = "helm" ] && [ "$REPO_TYPE" = "local" ]; then
             SCRIPT_PATH="Repo_creation_Scripts/8.sh"
           elif [ "$REPO_TYPE" = "virtual" ]; then
             SCRIPT_PATH="Repo_creation_Scripts/8.1.sh"
