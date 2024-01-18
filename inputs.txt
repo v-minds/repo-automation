@@ -1,0 +1,40 @@
+# New Repository Name: Specifies the name of the new repository to be created in Jfrog.
+New Repository Name: jfrog10-debian
+
+# Anonymous Read-Only Access: Indicates whether anonymous read-only access is allowed (Yes/No).
+Anonymous Read-Only Access: Yes
+
+# Repository POC: Points of contact for the repository.
+Repository POC: ccardoso, avardhineni, spinreddy
+
+# Type of Repository: Specifies the type of repository (virtual, local, remote).
+Type of Repository: local
+
+# Package Type: Specifies the package type (e.g., debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform) for the repository.
+Package Type: debian
+
+# Repository Location: Indicates the geographical location of the repository (US/EMEA/AU).
+Repository Location: EMEA
+
+# URL: Specifies the URL associated with the repository. (Only applicable for remote repository type).
+URL: https://docker.io
+
+# Inclusion Rules: Defines inclusion rules for artifacts in the repository (e.g., kong/*, viasat*/*).
+Inclusion Rules: kong/*, viasat*/*
+
+# Exclusion Rules: Defines exclusion rules for artifacts in the repository (e.g., mrp-/*, cmob-/*, viasat*/).
+Exclusion Rules: mrp-/*, cmob-/*, viasat*/
+
+# Repositories: Lists other repositories associated with this one. (Only applicable for virtual repository type).
+Repositories: giapps-maven-local1, giapps-maven-dev5
+
+# Default Local Repo: Specifies the default local repository used in the virtual repository. (Only applicable for virtual repository type).
+Default Local Repo: giapps-maven-local1
+
+# terraformType: Indicates the type of Terraform module associated with the repository (module/provider).
+terraformType: module
+
+# Additional context or description about the purpose of the input file.
+This input file is used for Jfrog repository automation.
+
+# Note: Each line in this input is crucial for creating a JSON payload for Jfrog repository configuration.
