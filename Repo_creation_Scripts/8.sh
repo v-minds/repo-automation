@@ -79,7 +79,7 @@ if [ "$PACKAGE_TYPE" = "helm" ]; then
         "includesPattern": "'"$INCLUSION_RULES"'",
         "excludesPattern": "'"$EXCLUSION_RULES"'",
         "repositories": ["'"$local_repo_name"'"],
-        "defaultDeploymentRepo": "'"$DEFAULT_LOCAL_REPO"'"
+        "defaultDeploymentRepo": "'"$local_repo_name"'"
     }'
     echo "JSON Payload for Virtual Repository: $virtual_repo_json"
     # Function to create a virtual repository using the Artifactory REST API
