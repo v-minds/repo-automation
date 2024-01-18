@@ -1,5 +1,5 @@
 # New Repository Name: Specifies the name of the new repository to be created in Jfrog.
-New Repository Name: jfrog9-helm
+New Repository Name: jfrog10-debian
 
 # Anonymous Read-Only Access: Indicates whether anonymous read-only access is allowed (Yes/No).
 Anonymous Read-Only Access: Yes
@@ -8,10 +8,10 @@ Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 
 # Type of Repository: Specifies the type of repository (virtual, local, remote).
-Type of Repository: virtual
+Type of Repository: local
 
 # Package Type: Specifies the package type (e.g., debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform) for the repository.
-Package Type: helm
+Package Type: debian
 
 # Repository Location: Indicates the geographical location of the repository (US/EMEA/AU).
 Repository Location: EMEA
