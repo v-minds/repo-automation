@@ -1,4 +1,4 @@
-New Repository Name: jfrog10-helm
+New Repository Name: jfrog1-helm
 Anonymous Read-Only Access: Yes
 Repository POC: ccardoso, avardhineni, spinreddy
 Type of Repository: local
