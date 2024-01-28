@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Artifactory server URL
-ARTIFACTORY_URL="https://vminds.jfrog.io/artifactory"
+ARTIFACTORY_URL="https://nnv.jfrog.io/artifactory"
 
 # Artifactory username and password (replace with your credentials)
-USERNAME="avardhineni4@gmail.com"
-API_KEY="AKCpBrvkRp4gkkQ3BtVzZPNh8pGnZfGEhn411GUeatAKHPRExdgPZVxgU2YRTsUsCLNzRBRso"
+USERNAME="avardhineni2@gmail.com"
+API_KEY="AKCpBrw54cFb31CoBkJRBYVET7ewRsPiskAbF4NdhmGGSzdUJaKGPP7p9MFe9BrK3H1d7cs14"
 
 # Set the path to the new input file
 input_file="inputs.txt"
