@@ -15,19 +15,19 @@ jobs:
 
       - name: Execute Repository Automation Script
         run: |
-          INPUTS_FILE="inputs.txt"
-          PACKAGE_TYPE=$(grep -o "Package Type: [[:alnum:]]*" "$INPUTS_FILE" | cut -d ' ' -f 3)
-          REPO_TYPE=$(grep -m 1 "Type of Repository:" "$INPUTS_FILE" | cut -d ':' -f 2 | tr '[:upper:]' '[:lower:]' | tr -d ' ')
+          yaml_file="inputs.yml"
+          package_type=$(awk '!/^#/ && /Package Type:/ {sub(/Package Type:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
+          repository_type=$(awk '!/^#/ && /Type of Repository:/ {sub(/Type of Repository:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-          if [ "$PACKAGE_TYPE" = "helm" ] && [ "$REPO_TYPE" = "local" ]; then
-            SCRIPT_PATH="Repo_creation_Scripts/8.sh"
-          elif [ "$REPO_TYPE" = "virtual" ]; then
-            SCRIPT_PATH="Repo_creation_Scripts/8.1.sh"
-          elif [ "$REPO_TYPE" = "local" ] || [ "$REPO_TYPE" = "remote" ]; then
-            SCRIPT_PATH="Repo_creation_Scripts/3.8.1.sh"
+          if [ "$package_type" = "helm" ] && [ "$repository_type" = "local" ]; then
+            SCRIPT_PATH="Repo_creation_Scripts/2.helm-local.sh"
+          elif [ "$repository_type" = "virtual" ]; then
+            SCRIPT_PATH="Repo_creation_Scripts/3.virtual.sh"
+          elif [ "$repository_type" = "local" ] || [ "$repository_type" = "remote" ]; then
+            SCRIPT_PATH="Repo_creation_Scripts/1.local-remote.sh"
           else
             echo "No matching condition found for execution."
             exit 1
           fi
 
-          bash "$SCRIPT_PATH" "/$INPUTS_FILE"  # Add a leading slash for the root directory
+          bash "$SCRIPT_PATH" "/$yaml_file"  # Add a leading slash for the root directory

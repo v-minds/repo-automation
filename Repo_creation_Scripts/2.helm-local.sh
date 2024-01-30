@@ -8,47 +8,67 @@ USERNAME="avardhineni2@gmail.com"
 API_KEY="AKCpBrw54cFb31CoBkJRBYVET7ewRsPiskAbF4NdhmGGSzdUJaKGPP7p9MFe9BrK3H1d7cs14"
 
 # Set the path to the new input file
-input_file="inputs.txt"
+yaml_file="inputs.yml"
 
-# Read the repository inputs from the specified file
-REPO_NAME=$(grep -m 1 "New Repository Name:" "$input_file" | cut -d ':' -f 2 | tr -d ' ' | tr '[:upper:]' '[:lower:]' | tr '_' '-')
+# Read the repository inputs from the YAML input file
 
-PACKAGE_TYPE=$(grep -o "Package Type: [[:alnum:]]*" "$input_file" | cut -d ' ' -f 3)
+# Read the value of "New Repository Name" from the YAML file, excluding comments and convert to lowercase
+repo_name=$(awk '!/^#/ && /New Repository Name:/ {sub(/Name:/, "", $NF); print $NF}' "$yaml_file" | tr '[:upper:]' '[:lower:]')
 
-RCLASS=$(grep -m 1 "Type of Repository:" "$input_file" | cut -d ':' -f 2 | tr '[:upper:]' '[:lower:]' | tr -d ' ')
+# Read the value of "Anonymous Read-Only Access" from the YAML file, excluding comments
+anonymous_readonly_access=$(awk '!/^#/ && /Anonymous Read-Only Access:/ {sub(/Anonymous Read-Only Access:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-URL=$(grep "URL:" "$input_file" | cut -d ' ' -f 2)
+# Read the value of "Repository POC" from the YAML file, excluding comments
+repository_poc=$(awk '!/^#/ && /Repository POC:/ {sub(/Repository POC:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-repository_poc=$(grep "Repository POC:" "$input_file" | cut -d ':' -f 2 | sed 's/,$//' | sed 's/^ *//')
+# Read the value of "Type of Repository" from the YAML file, excluding comments
+repository_type=$(awk '!/^#/ && /Type of Repository:/ {sub(/Type of Repository:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-INCLUSION_RULES=$(grep "Inclusion Rules:" "$input_file" | cut -d ':' -f 2 | tr -d ' ')
+# Read the value of "URL" from the YAML file, excluding comments
+repository_url=$(awk '!/^#/ && /URL:/ {sub(/URL:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-EXCLUSION_RULES=$(grep "Exclusion Rules:" "$input_file" | cut -d ':' -f 2 | tr -d ' ')
+# Read the value of "Inclusion Rules" from the YAML file, excluding comments
+inclusion_rules=$(awk '!/^#/ && /Inclusion Rules:/ {sub(/Inclusion Rules:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-REPOSITORIES=$(grep "Repositories:" "$input_file" | cut -d ':' -f 2 | tr -d ' ')
+# Read the value of "Exclusion Rules" from the YAML file, excluding comments
+exclusion_rules=$(awk '!/^#/ && /Exclusion Rules:/ {sub(/Exclusion Rules:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
-DEFAULT_LOCAL_REPO=$(grep "Default Local Repo:" "$input_file" | cut -d ':' -f 2 | tr -d ' ')
+# Read the value of "Repositories" from the YAML file, excluding comments
+repositories=$(awk '!/^#/ && /Repositories:/ {sub(/Repositories:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
+
+# Read the value of "Default Local Repo" from the YAML file, excluding comments
+default_local_repo=$(awk '!/^#/ && /Default Local Repo:/ {sub(/Default Local Repo:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
+
+# Read the value of "Package Type" from the YAML file, excluding comments
+package_type=$(awk '!/^#/ && /Package Type:/ {sub(/Package Type:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
+
+# Read the value of "terraformType" from the YAML file, excluding comments
+terraform_type=$(awk '!/^#/ && /terraformType:/ {sub(/terraformType:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
+
+# Read the value of "Repository Location" from the YAML file, excluding comments
+repository_location=$(awk '!/^#/ && /Repository Location:/ {sub(/Repository Location:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
 # Convert the comma-separated list to an array
-IFS=',' read -ra REPO_ARRAY <<< "$REPOSITORIES"
+IFS=',' read -ra REPO_ARRAY <<< "$repositories"
 
 # Check if the package type is helm
-if [ "$PACKAGE_TYPE" = "helm" ]; then
+if [ "$package_type" = "helm" ]; then
     # Check if the repository class is local or virtual
-    if [[ "$RCLASS" == "local" || "$RCLASS" == "virtual" ]]; then
+    if [[ "$repository_type" == "local" || "$repository_type" == "virtual" ]]; then
         # Append -local to local repo type
-        local_repo_name="${REPO_NAME}-local"
+        local_repo_name="${repo_name}-local"
         # JSON payload for local repository creation
         local_repo_json='{
             "key": "'"$local_repo_name"'",
             "rclass": "local",
-            "url": "'"$URL"'",
-            "packageType": "'"$PACKAGE_TYPE"'",
+            "url": "'"$repository_url"'",
+            "packageType": "'"$package_type"'",
             "description": "'"$repository_poc"'",
-            "includesPattern": "'"$INCLUSION_RULES"'",
-            "excludesPattern": "'"$EXCLUSION_RULES"'",
+            "includesPattern": "'"$inclusion_rules"'",
+            "excludesPattern": "'"$exclusion_rules"'",
             "repositories": '"$(printf '%s\n' "${REPO_ARRAY[@]}" | jq -R -s -c 'split("\n")[:-1]')"',
-            "defaultDeploymentRepo": "'"$DEFAULT_LOCAL_REPO"'"
+            "defaultDeploymentRepo": "'"$default_local_repo"'",
+            "repoLayoutRef": "'"simple-default"'"
         }'
         echo "JSON Payload for Local Repository: $local_repo_json"
         # Function to create a local repository using the Artifactory REST API
@@ -62,24 +82,35 @@ if [ "$PACKAGE_TYPE" = "helm" ]; then
                 exit 1
             else
                 echo "Local Repository '$local_repo_name' created successfully."
+                # Check if the repository class is "local" and set the storage quota
+                if [ "$repository_type" == "local" ]; then
+                    quota_response=$(curl -u "$USERNAME:$API_KEY" -X PUT "$ARTIFACTORY_URL/api/storage/$local_repo_name?properties=repository.path.quota=107374182400")
+                    if [[ $quota_response == *"error"* ]]; then
+                        echo "Error setting storage quota for the local repository: $quota_response"
+                    else
+                        echo "Storage quota set for the local repository '$local_repo_name'."
+                    fi
+                fi
             fi
         }
         # Main script execution
         create_local_repo  # Attempt to create the local repository
     fi
     # Append -virtual to virtual repo type
-    virtual_repo_name="${REPO_NAME}-virtual"
+    virtual_repo_name="${repo_name}-virtual"
     # JSON payload for virtual repository creation
     virtual_repo_json='{
         "key": "'"$virtual_repo_name"'",
         "rclass": "virtual",
-        "url": "'"$URL"'",
-        "packageType": "'"$PACKAGE_TYPE"'",
+        "url": "'"$repository_url"'",
+        "packageType": "'"$package_type"'",
         "description": "'"$repository_poc"'",
-        "includesPattern": "'"$INCLUSION_RULES"'",
-        "excludesPattern": "'"$EXCLUSION_RULES"'",
+        "includesPattern": "'"$inclusion_rules"'",
+        "excludesPattern": "'"$exclusion_rules"'",
         "repositories": ["'"$local_repo_name"'"],
-        "defaultDeploymentRepo": "'"$local_repo_name"'"
+        "defaultDeploymentRepo": "'"$local_repo_name"'",
+        "repoLayoutRef": "'"simple-default"'"
+
     }'
     echo "JSON Payload for Virtual Repository: $virtual_repo_json"
     # Function to create a virtual repository using the Artifactory REST API
@@ -102,13 +133,14 @@ fi
 # Additional checks or actions can be added here
 
 # Check if the package type is helm
-if [ "$PACKAGE_TYPE" = "helm" ]; then
+if [ "$package_type" = "helm" ]; then
     # Check if the repository class is local or virtual
-    if [ "$RCLASS" == "local" ]; then
+    if [ "$repository_type" == "local" ]; then
         # Append -local to local repo type
         #LOCAL_REPO_NAME="${REPO_NAME}-local"
         # Check additional conditions
-        if [ -f "$input_file" ] && grep -q "Anonymous Read-Only Access: Yes" "$input_file" && ! grep -q "Type of Repository: virtual" "$input_file" && grep -q "Anonymous Read-Only Access: Yes" "$input_file"; then
+        # if [ -f "$input_file" ] && grep -q "Anonymous Read-Only Access: Yes" "$input_file" && ! grep -q "Type of Repository: virtual" "$input_file" && grep -q "Anonymous Read-Only Access: Yes" "$input_file"; then
+        if [ -f "$yaml_file" ] && [ "$anonymous_readonly_access" = "yes" ] && [ "$repository_type" != "virtual" ]; then
             # Your logic here for local repository
             # Retrieve permission target
             PERMISSION_TARGET=$(curl -u "$USERNAME:$API_KEY" -X GET "$ARTIFACTORY_URL/api/v2/security/permissions/anonymous-read-only-prod")
