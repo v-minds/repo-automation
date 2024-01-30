@@ -4,18 +4,18 @@
 # For the Helm package type, please be aware that it will generate both a local and a virtual repository
 
 # New Repository Name: Enter the desired name of the repository. (e.g. giapps-pypi-dev, giapps-docker-preprod, giapps-yum-prod)
-New Repository Name:jfrog5-helm
+New Repository Name:jfrog6-maven
 
 # Anonymous Read-Only Access: Specify "Yes" or "No" to indicate whether anonymous read-only access should be allowed for this repository.
 # Not applicable for virtual repository type. 
-Anonymous Read-Only Access:yes
+Anonymous Read-Only Access:
 
 # Repository POC: Enter the Viasat Active Directory usernames of the POCs, not viasat.io usernames.
 # # Use comma to separate multiple usernames.
 Repository POC:ccardoso, avardhineni, spinreddy
 
 # Type of Repository: Specify any one type of repository (local, remote, virtual).
-Type of Repository:local
+Type of Repository:virtual
 
 # URL: (Only applicable for remote repository type) Give the URL for the remote repository, to which this repo should mirror.
 # Leave this field blank for local or virtual repository types.
@@ -34,14 +34,14 @@ Exclusion Rules:
 # Repositories: (Only applicable for virtual repository type). Provide a list of all local and remote repositories that you intend to include in this Virtual repository. 
 # Use comma to separate multiple repositories.
 # Leave this field blank for local and remote repository types.
-Repositories:jfrog-helm5-local,jfrog-docker-remote2
+Repositories:jfrog-maven-local,jfrog-docker-remote2
 
 # Default Local Repo: (Only applicable for virtual repository type). Specify the default local repository to be associated with the Virtual repository.
 # Leave this field blank for local and remote repository types.
-Default Local Repo:jfrog-helm5-local
+Default Local Repo:jfrog-maven-local
 
 # Package Type: Specify any one package type that applies to your repository (e.g. debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform)
-Package Type:helm
+Package Type:maven
 
 # terraformType: (Only applicable for terraform package type) Indicates the type of Terraform module associated with the repository (module/provider).
 terraformType:
