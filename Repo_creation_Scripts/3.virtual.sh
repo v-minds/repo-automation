@@ -65,7 +65,8 @@ local_repo_json='{
     "includesPattern": "'"$inclusion_rules"'",
     "excludesPattern": "'"$exclusion_rules"'",
     "repositories": '"$(printf '%s\n' "${REPO_ARRAY[@]}" | jq -R -s -c 'split("\n")[:-1]')"',
-    "defaultDeploymentRepo": "'"$default_local_repo"'"
+    "defaultDeploymentRepo": "'"$default_local_repo"'",
+    "repoLayoutRef": "'"simple-default"'"
 }'
 
 echo "JSON Payload for Local Repository: $local_repo_json"
@@ -80,7 +81,8 @@ virtual_repo_json='{
     "includesPattern": "'"$inclusion_rules"'",
     "excludesPattern": "'"$exclusion_rules"'",
     "repositories": ["'"$local_repo_name"'"],
-    "defaultDeploymentRepo": "'"$local_repo_name"'"
+    "defaultDeploymentRepo": "'"$local_repo_name"'",
+    "repoLayoutRef": "'"simple-default"'"
 }'
 
 echo "JSON Payload for Virtual Repository: $virtual_repo_json"
