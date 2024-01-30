@@ -4,7 +4,7 @@
 # For the Helm package type, please be aware that it will generate both a local and a virtual repository
 
 # New Repository Name: Enter the desired name of the repository. (e.g. giapps-pypi-dev, giapps-docker-preprod, giapps-yum-prod)
-New Repository Name:jfrog-debian
+New Repository Name:jfrog-docker-remote2
 
 # Anonymous Read-Only Access: Specify "Yes" or "No" to indicate whether anonymous read-only access should be allowed for this repository.
 # Not applicable for virtual repository type. 
@@ -15,21 +15,21 @@ Anonymous Read-Only Access:yes
 Repository POC:ccardoso, avardhineni, spinreddy
 
 # Type of Repository: Specify any one type of repository (local, remote, virtual).
-Type of Repository:local
+Type of Repository:remote
 
 # URL: (Only applicable for remote repository type) Give the URL for the remote repository, to which this repo should mirror.
 # Leave this field blank for local or virtual repository types.
-URL:
+URL:https://docker.io
 
 # Inclusion Rules: (Only applicable for remote repository type) Specify inclusion rules for your remote repo to mitigate against exploits like Namespace Shadowing Attacks. 
 # For additional information, visit https://wiki.viasat.com/display/ARTIFACTORY/Dependency+Confusion+Mitigation+Guide
 # Leave this field blank for local or virtual repository types.
-Inclusion Rules:
+Inclusion Rules:kong/*,viasat*/*
 
 # Exclusion Rules: (Only applicable for remote repository type) Specify exclusion rules for your remote repo to mitigate against exploits like Namespace Shadowing Attacks. 
 # For additional information, visit https://wiki.viasat.com/display/ARTIFACTORY/Dependency+Confusion+Mitigation+Guide
 # Leave this field blank for local or virtual repository types.
-Exclusion Rules:
+Exclusion Rules:mrp-/*,cmob-/*,viasat*/
 
 # Repositories: (Only applicable for virtual repository type). Provide a list of all local and remote repositories that you intend to include in this Virtual repository. 
 # Use comma to separate multiple repositories.
@@ -41,7 +41,7 @@ Repositories:
 Default Local Repo:
 
 # Package Type: Specify any one package type that applies to your repository (e.g. debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform)
-Package Type:debian
+Package Type:docker
 
 # terraformType: (Only applicable for terraform package type) Indicates the type of Terraform module associated with the repository (module/provider).
 terraformType:
@@ -55,8 +55,8 @@ Repository Location:EMEA
 # Repository POC:ccardoso, avardhineni, spinreddy
 # Type of Repository:remote
 # URL:https://docker.io
-# Inclusion Rules:kong/*, viasat*/*
-# Exclusion Rules:mrp-/*, cmob-/*, viasat*/
+# Inclusion Rules:kong/*,viasat*/*
+# Exclusion Rules:mrp-/*,cmob-/*,viasat*/
 # Repositories:giapps-maven-local1, giapps-maven-dev5
 # Default Local Repo:giapps-maven-local1
 # Package Type:terraform
