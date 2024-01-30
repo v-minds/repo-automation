@@ -4,18 +4,18 @@
 # For the Helm package type, please be aware that it will generate both a local and a virtual repository
 
 # New Repository Name: Enter the desired name of the repository. (e.g. giapps-pypi-dev, giapps-docker-preprod, giapps-yum-prod)
-New Repository Name:jfrog6-maven
+New Repository Name:jfrog6-debian
 
 # Anonymous Read-Only Access: Specify "Yes" or "No" to indicate whether anonymous read-only access should be allowed for this repository.
 # Not applicable for virtual repository type. 
-Anonymous Read-Only Access:
+Anonymous Read-Only Access:yes
 
 # Repository POC: Enter the Viasat Active Directory usernames of the POCs, not viasat.io usernames.
 # # Use comma to separate multiple usernames.
 Repository POC:ccardoso, avardhineni, spinreddy
 
 # Type of Repository: Specify any one type of repository (local, remote, virtual).
-Type of Repository:virtual
+Type of Repository:local
 
 # URL: (Only applicable for remote repository type) Give the URL for the remote repository, to which this repo should mirror.
 # Leave this field blank for local or virtual repository types.
@@ -41,7 +41,7 @@ Repositories:jfrog-maven-local,jfrog-docker-remote2
 Default Local Repo:jfrog-maven-local
 
 # Package Type: Specify any one package type that applies to your repository (e.g. debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform)
-Package Type:maven
+Package Type:debian
 
 # terraformType: (Only applicable for terraform package type) Indicates the type of Terraform module associated with the repository (module/provider).
 terraformType:
