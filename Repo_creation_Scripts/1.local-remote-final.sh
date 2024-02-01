@@ -8,7 +8,7 @@ USERNAME="avardhineni2@gmail.com"
 API_KEY="AKCpBrw54cFb31CoBkJRBYVET7ewRsPiskAbF4NdhmGGSzdUJaKGPP7p9MFe9BrK3H1d7cs14"
 
 # Set the path to the new input file
-yaml_file="/opt/yaml/final/inputs.yml"
+yaml_file="inputs.yml"
 
 # Read the repository inputs from the YAML input file
 
