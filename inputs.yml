@@ -4,7 +4,7 @@
 # For the Helm package type, please be aware that it will generate both a local and a virtual repository
 
 # New Repository Name: Enter the desired name of the repository. (e.g. giapps-pypi-dev, giapps-docker-preprod, giapps-yum-prod)
-New Repository Name:jfrog10-helm
+New Repository Name:jfrog-helm10
 
 # Anonymous Read-Only Access: Specify "Yes" or "No" to indicate whether anonymous read-only access should be allowed for this repository.
 # Not applicable for virtual repository type. 
@@ -15,7 +15,7 @@ Anonymous Read-Only Access:yes
 Repository POC:ccardoso, avardhineni, spinreddy
 
 # Type of Repository: Specify any one type of repository (local, remote, virtual).
-Type of Repository:local
+Type of Repository:virtual
 
 # URL: (Only applicable for remote repository type) Give the URL for the remote repository, to which this repo should mirror.
 # Leave this field blank for local or virtual repository types.
@@ -47,7 +47,7 @@ Package Type:helm
 terraformType:
 
 # Repository Location: Specify the location for the repository from the options: US: https://artifactory.viasat.com EMEA: https://emea.artifactory.viasat.com/ AU: https://au.artifactory.viasat.com/.
-Repository Location:AU
+Repository Location:EMEA
 
 # Below are the example responses for better clarity
 # New Repository Name:terraform-test2-remote
