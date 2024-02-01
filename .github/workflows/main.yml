@@ -20,11 +20,11 @@ jobs:
           repository_type=$(awk '!/^#/ && /Type of Repository:/ {sub(/Type of Repository:/, "", $0); print $0}' "$yaml_file" | tr -d '[:space:]')
 
           if [ "$package_type" = "helm" ] && [ "$repository_type" = "local" ]; then
-            SCRIPT_PATH="Repo_creation_Scripts/2.helm-local.sh"
+            SCRIPT_PATH="Repo_creation_Scripts/2.helm-local-final.sh"
           elif [ "$repository_type" = "virtual" ]; then
-            SCRIPT_PATH="Repo_creation_Scripts/3.virtual.sh"
+            SCRIPT_PATH="Repo_creation_Scripts/3.virtual-final.sh"
           elif [ "$repository_type" = "local" ] || [ "$repository_type" = "remote" ]; then
-            SCRIPT_PATH="Repo_creation_Scripts/1.local-remote.sh"
+            SCRIPT_PATH="Repo_creation_Scripts/1.local-remote-final.sh"
           else
             echo "No matching condition found for execution."
             exit 1
