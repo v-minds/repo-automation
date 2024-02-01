@@ -4,7 +4,7 @@
 # For the Helm package type, please be aware that it will generate both a local and a virtual repository
 
 # New Repository Name: Enter the desired name of the repository. (e.g. giapps-pypi-dev, giapps-docker-preprod, giapps-yum-prod)
-New Repository Name:jfrog10-debian
+New Repository Name:jfrog12-debian
 
 # Anonymous Read-Only Access: Specify "Yes" or "No" to indicate whether anonymous read-only access should be allowed for this repository.
 # Not applicable for virtual repository type. 
