@@ -36,6 +36,6 @@ jobs:
               exit(1)
 
           script_path = os.path.join("/", yaml_file, script_path)
-          os.system(f"python {script_path}")
+          os.system(f"python3.11 {script_path}")
 
 
