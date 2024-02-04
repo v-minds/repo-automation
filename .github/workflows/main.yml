@@ -50,4 +50,4 @@ jobs:
               exit(1)
 
           script_path = os.path.join("/", yaml_file, script_path)
-          python $script_path
+          python3.8 $script_path
