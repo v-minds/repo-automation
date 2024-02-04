@@ -1,23 +1,35 @@
 name: Repository Automation
+
 on:
   pull_request:
     types:
       - closed
+
 jobs:
   create_artifactory:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.11
+
+      - name: Create and activate virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt  # If you have a requirements file
+
       - name: Execute Repository Automation Script
         run: |
-          python -m pip install --upgrade pip
           yaml_file="inputs.yml"
-          
           import re
           import os
 
@@ -38,6 +50,4 @@ jobs:
               exit(1)
 
           script_path = os.path.join("/", yaml_file, script_path)
-          os.system(f"python3 {script_path} --headless")
-
-
+          python $script_path
