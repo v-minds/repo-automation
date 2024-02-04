@@ -1,4 +1,3 @@
-#!/usr/bin/env python3.11
 import os
 import re
 import json
