@@ -4,7 +4,7 @@
 # For the Helm package type, please be aware that it will generate both a local and a virtual repository
 
 # New Repository Name: Enter the desired name of the repository. (e.g. giapps-pypi-dev, giapps-docker-preprod, giapps-yum-prod)
-New Repository Name:jfrog-helm10
+New Repository Name:jfrog15-debian
 
 # Anonymous Read-Only Access: Specify "Yes" or "No" to indicate whether anonymous read-only access should be allowed for this repository.
 # Not applicable for virtual repository type. 
@@ -15,7 +15,7 @@ Anonymous Read-Only Access:yes
 Repository POC:ccardoso, avardhineni, spinreddy
 
 # Type of Repository: Specify any one type of repository (local, remote, virtual).
-Type of Repository:virtual
+Type of Repository:local
 
 # URL: (Only applicable for remote repository type) Give the URL for the remote repository, to which this repo should mirror.
 # Leave this field blank for local or virtual repository types.
@@ -34,20 +34,20 @@ Exclusion Rules:
 # Repositories: (Only applicable for virtual repository type). Provide a list of all local and remote repositories that you intend to include in this Virtual repository. 
 # Use comma to separate multiple repositories.
 # Leave this field blank for local and remote repository types.
-Repositories:jfrog-helm-local, jfrog-docker-remote5
+Repositories:
 
 # Default Local Repo: (Only applicable for virtual repository type). Specify the default local repository to be associated with the Virtual repository.
 # Leave this field blank for local and remote repository types.
-Default Local Repo:jfrog-helm-local
+Default Local Repo:
 
 # Package Type: Specify any one package type that applies to your repository (e.g. debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform)
-Package Type:helm
+Package Type:debian
 
 # terraformType: (Only applicable for terraform package type) Indicates the type of Terraform module associated with the repository (module/provider).
 terraformType:
 
 # Repository Location: Specify the location for the repository from the options: US: https://artifactory.viasat.com EMEA: https://emea.artifactory.viasat.com/ AU: https://au.artifactory.viasat.com/.
-Repository Location:EMEA
+Repository Location:AU
 
 # Below are the example responses for better clarity
 # New Repository Name:terraform-test2-remote
