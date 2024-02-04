@@ -15,7 +15,6 @@ jobs:
           python-version: 3.11  # Choose the Python version you need
       - name: Execute Repository Automation Script
         run: |
-          python -m pip install --upgrade pip
           yaml_file="inputs.yml"
           import re
           import os
@@ -38,6 +37,5 @@ jobs:
 
           script_path = os.path.join("/", yaml_file, script_path)
           os.system(f"python {script_path}")
-
 
 
