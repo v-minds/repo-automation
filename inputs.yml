@@ -34,11 +34,11 @@ Exclusion Rules:
 # Repositories: (Only applicable for virtual repository type). Provide a list of all local and remote repositories that you intend to include in this Virtual repository. 
 # Use comma to separate multiple repositories.
 # Leave this field blank for local and remote repository types.
-Repositories:jfrog-debian
+Repositories:
 
 # Default Local Repo: (Only applicable for virtual repository type). Specify the default local repository to be associated with the Virtual repository.
 # Leave this field blank for local and remote repository types.
-Default Local Repo:jfrog-debian
+Default Local Repo:
 
 # Package Type: Specify any one package type that applies to your repository (e.g. debian, docker, generic, maven, npm, rpm, pypi, gradle, nuget, helm, terraform)
 Package Type:debian
