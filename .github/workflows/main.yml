@@ -7,7 +7,7 @@ on:
 
 jobs:
   create_artifactory:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -15,18 +15,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
-
-      - name: Create and activate virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-
+          python-version: 3.11
+          
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           
-
       - name: Execute Repository Automation Script
         run: |
           yaml_file="inputs.yml"
@@ -50,4 +44,4 @@ jobs:
               exit(1)
 
           script_path = os.path.join("/", yaml_file, script_path)
-          python3.8 $script_path
+          python3.11 $script_path
