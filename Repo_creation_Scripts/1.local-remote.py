@@ -4,11 +4,16 @@ import re
 import json
 import requests
 
+my_secret = os.environ.get("MY_VARIABLE")
+
+# Use the secret in your script
+print(f"Your secret is: {my_secret}")
+
 # Artifactory server URL
 ARTIFACTORY_URL = "https://nnv.jfrog.io/artifactory"
 # Artifactory username and password (replace with your credentials)
 USERNAME = "avardhineni2@gmail.com"
-API_KEY = "AKCpBrw54cFb31CoBkJRBYVET7ewRsPiskAbF4NdhmGGSzdUJaKGPP7p9MFe9BrK3H1d7cs14"
+my_secret = os.environ.get("MY_VARIABLE")
 # Set the path to the new input file
 yaml_file = "inputs.yml"
 
@@ -110,7 +115,7 @@ def create_repo():
     headers = {
         "Content-Type": "application/json",
     }
-    auth = (USERNAME, API_KEY)
+    auth = (USERNAME, my_secret)
     
     response = requests.put(url, headers=headers, auth=auth, json=repo_json)
     
@@ -166,7 +171,7 @@ def create_permission_target():
     headers = {
         "Content-Type": "application/json",
     }
-    auth = (USERNAME, API_KEY)
+    auth = (USERNAME, my_secret)
 
     response = requests.put(url, headers=headers, auth=auth, data=permission_json)
 
@@ -184,7 +189,7 @@ create_permission_target()  # Attempt to create the permission target
 if os.path.exists(yaml_file) and anonymous_readonly_access.lower() == "yes" and repository_type != "virtual":
     # Retrieve permission target
     permission_target_url = f"{ARTIFACTORY_URL}/api/v2/security/permissions/anonymous-read-only-prod"
-    permission_target = requests.get(permission_target_url, auth=(USERNAME, API_KEY)).json()
+    permission_target = requests.get(permission_target_url, auth=(USERNAME, my_secret)).json()
 
     print(json.dumps(permission_target, indent=2))  # Display permission target
 
@@ -228,7 +233,7 @@ if os.path.exists(yaml_file) and anonymous_readonly_access.lower() == "yes" and 
 
     update_permission_target_response = requests.put(update_permission_target_url,
                                                      headers=update_permission_target_headers,
-                                                     auth=(USERNAME, API_KEY),
+                                                     auth=(USERNAME, my_secret),
                                                      json=update_permission_target_payload)
 
     if "error" in update_permission_target_response.text:
