@@ -10,9 +10,9 @@ my_secret = os.environ.get("MY_VARIABLE")
 print(f"Your secret is: {my_secret}")
 
 # Artifactory server URL
-ARTIFACTORY_URL = "https://nnv.jfrog.io/artifactory"
+ARTIFACTORY_URL = "https://vnn.jfrog.io/artifactory"
 # Artifactory username and password (replace with your credentials)
-USERNAME = "avardhineni2@gmail.com"
+USERNAME = "avardhineni1@gmail.com"
 my_secret = os.environ.get("MY_VARIABLE")
 # Set the path to the new input file
 yaml_file = "inputs.yml"
@@ -141,7 +141,7 @@ if repository_location == "US":
 elif repository_location == "EMEA":
     ARTIFACTORY_URL = "https://nn.jfrog.io/artifactory"
 elif repository_location == "AU":
-    ARTIFACTORY_URL = "https://nnv.jfrog.io/artifactory"
+    ARTIFACTORY_URL = "https://vnn.jfrog.io/artifactory"
 else:
     print(f"Unknown repository location: {repository_location}")
     exit(1)
