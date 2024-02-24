@@ -1,47 +1,34 @@
 name: Repository Automation
-
 on:
-  pull_request:
-    types:
-      - closed
+  workflow_dispatch:
+
+env:
+  MY_VARIABLE: ${{ secrets.API_TOKEN }}  # Pass the secret as an environment variable
 
 jobs:
   create_artifactory:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.9]
+
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
-          
+          python-version: ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          
+          python -m pip install --upgrade pip
+          pip install requests  # Install the requests module
+
+      - name: Check Python version
+        run: python --version
+
       - name: Execute Repository Automation Script
-        run: |
-          yaml_file="inputs.yml"
-          import re
-          import os
-
-          with open(yaml_file, 'r') as file:
-              yaml_content = file.read()
-
-          package_type = next(re.search(r'Package Type:\s*([^#\n]*)', line).group(1).strip() for line in yaml_content.split('\n') if not line.startswith('#') and 'Package Type:' in line)
-          repository_type = next(re.search(r'Type of Repository:\s*([^#\n]*)', line).group(1).strip() for line in yaml_content.split('\n') if not line.startswith('#') and 'Type of Repository:' in line)
-
-          if package_type == "helm" and repository_type == "local":
-              script_path = "Repo_creation_Scripts/2.helm-local.py"
-          elif repository_type == "virtual":
-              script_path = "Repo_creation_Scripts/3.virtual.py"
-          elif repository_type == "local" or repository_type == "remote":
-              script_path = "Repo_creation_Scripts/1.local-remote.py"
-          else:
-              print("No matching condition found for execution.")
-              exit(1)
-
-          script_path = os.path.join("/", yaml_file, script_path)
-          python3.8 $script_path
+        run: python execute_script.py
