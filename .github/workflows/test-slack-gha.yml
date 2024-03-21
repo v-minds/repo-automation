@@ -1,0 +1,15 @@
+name: test-slack-gha
+on: [push]
+jobs: 
+  slack_notifier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notifications on slack using webhooks
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "Git push done in the repo : repo-automation"
+            }
+        env:
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
